@@ -11,7 +11,6 @@
 </head>
 
 @*using the default navbar and css, plus a few edits*@
-
 <body class="bg-dark text-light">
     <header class="text-light">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-primary border-bottom box-shadow mb-3">
@@ -33,10 +32,12 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @*render body here*@
             @RenderBody()
         </main>
     </div>
 
+    @*footer*@
     <footer class="border-top footer bg-warning text-muted">
         <div class="container">
             &copy; 2021 - IS413 Bookstore

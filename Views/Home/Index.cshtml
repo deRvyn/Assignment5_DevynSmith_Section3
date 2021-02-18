@@ -2,11 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*imports the data*@
 @model IQueryable<Book>
 
 <div class="text-center">
     <h1 class="display-4 text-left">Book List</h1>
     
+    @*sets up the table and headings*@
     <table class="text-left table table-dark table-hover">
         <tr class="text-left text-light">
             <th>#</th>
@@ -18,6 +20,7 @@
             <th>Category</th>
             <th>Price</th>
         </tr>
+        @*renders each entry in the database into a new row of the table*@
         @foreach (var x in Model)
         {
         <tr class="text-left text-light">

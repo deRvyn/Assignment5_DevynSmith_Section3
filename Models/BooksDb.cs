@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Assignment5_DevynSmith_Section3.Models
 {
+    //book class to ensure the data is entered into the database correctly
     public class Book
     {
+        //this field is the key for each entry, auto entered by having the key tag
         [Key]
         [Required]
         public int BookId { get; set; }
@@ -21,6 +23,7 @@ namespace Assignment5_DevynSmith_Section3.Models
         [Required]
         public string Publisher { get; set; }
         [Required]
+        //regex to make sure the ISBN is entered correctly
         [RegularExpression(@"\d{3}-\d{10}", ErrorMessage = "ISBN incorrect, please use this format: 000-0000000000")]
         public string Isbn { get; set; }
         [Required]

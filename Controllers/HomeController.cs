@@ -15,12 +15,14 @@ namespace Assignment5_DevynSmith_Section3.Controllers
 
         private IBooksRepository _repository;
 
+        //constructor for the logger and repository
         public HomeController(ILogger<HomeController> logger, IBooksRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
 
+        //index page that uses the repository to get the book data from the database
         public IActionResult Index()
         {
             return View(_repository.Books);

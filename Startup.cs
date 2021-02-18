@@ -26,6 +26,7 @@ namespace Assignment5_DevynSmith_Section3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //adds needed services to make the database work
             services.AddDbContext<BooksDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:BooksConnection"]);
@@ -61,6 +62,7 @@ namespace Assignment5_DevynSmith_Section3
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //makes sure the seed data populates on startup if needed
             SeedData.EnsurePopulated(app);
         }
     }

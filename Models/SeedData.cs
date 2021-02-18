@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Assignment5_DevynSmith_Section3.Models
 {
+    //this class simply adds in data to the database, that's why it's so long
     public class SeedData
     {
         public static void EnsurePopulated (IApplicationBuilder application)
@@ -15,6 +16,7 @@ namespace Assignment5_DevynSmith_Section3.Models
             BooksDbContext context = application.ApplicationServices.
                 CreateScope().ServiceProvider.GetRequiredService<BooksDbContext>();
 
+            //if statements to tell it to migrate again if needed, and than populate the database if it's empty
             if(context.Database.GetPendingMigrations().Any())
             {
                 context.Database.Migrate();
