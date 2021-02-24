@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment5_DevynSmith_Section3.Models
+namespace Assignment6_DevynSmith_Section3.Models
 {
     //book class to ensure the data is entered into the database correctly
     public class Book
@@ -32,6 +32,8 @@ namespace Assignment5_DevynSmith_Section3.Models
         public string Category { get; set; }
         [Required]
         public double Price { get; set; }
+        [Required]
+        public int Pages { get; set; }
 
     }
 }

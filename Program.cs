@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment5_DevynSmith_Section3
+namespace Assignment6_DevynSmith_Section3
 {
     public class Program
     {

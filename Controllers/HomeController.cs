@@ -1,4 +1,4 @@
-﻿using Assignment5_DevynSmith_Section3.Models;
+﻿using Assignment6_DevynSmith_Section3.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment5_DevynSmith_Section3.Controllers
+namespace Assignment6_DevynSmith_Section3.Controllers
 {
     public class HomeController : Controller
     {
