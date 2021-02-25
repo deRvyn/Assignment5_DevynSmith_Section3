@@ -55,11 +55,15 @@ namespace Assignment6_DevynSmith_Section3
 
             app.UseAuthorization();
 
+            //endpoint edited to make it look better in the URL
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination",
+                    "Books/P{page}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
             });
 
             //makes sure the seed data populates on startup if needed

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Assignment6_DevynSmith_Section3.Models.ViewModels;
 
 namespace Assignment6_DevynSmith_Section3.Controllers
 {
@@ -15,6 +16,9 @@ namespace Assignment6_DevynSmith_Section3.Controllers
 
         private IBooksRepository _repository;
 
+        //number of items per page in pagination
+        public int PageSize = 5;
+
         //constructor for the logger and repository
         public HomeController(ILogger<HomeController> logger, IBooksRepository repository)
         {
@@ -23,9 +27,22 @@ namespace Assignment6_DevynSmith_Section3.Controllers
         }
 
         //index page that uses the repository to get the book data from the database
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(_repository.Books);
+            return View(new BookListViewModel
+            {
+                Books = _repository.Books
+                    .OrderBy(p => p.BookId)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize)
+                ,
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalNumItems = _repository.Books.Count()
+                }
+            });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
