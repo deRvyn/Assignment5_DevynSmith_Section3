@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Assignment6_DevynSmith_Section3.Models.ViewModels
 {
+    //adding the paging info class
     public class PagingInfo
     {
         public int TotalNumItems { get; set; }

@@ -166,6 +166,7 @@ namespace Assignment6_DevynSmith_Section3.Models
                         Pages = 642
                     },
 
+                    //adding 3 of my favorite books
                     new Book
                     {
                         Title = "Ender's Game",
