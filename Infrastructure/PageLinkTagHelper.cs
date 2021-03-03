@@ -1,4 +1,4 @@
-﻿using Assignment6_DevynSmith_Section3.Models.ViewModels;
+﻿using Assignment7_DevynSmith_Section3.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment6_DevynSmith_Section3.Infrastructure
+namespace Assignment7_DevynSmith_Section3.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper

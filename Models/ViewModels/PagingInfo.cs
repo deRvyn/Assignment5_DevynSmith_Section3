@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment6_DevynSmith_Section3.Models.ViewModels
+namespace Assignment7_DevynSmith_Section3.Models.ViewModels
 {
     //adding the paging info class
     public class PagingInfo
