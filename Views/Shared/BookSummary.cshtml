@@ -1,0 +1,15 @@
+﻿@model Book 
+
+@*creating a partial view*@
+
+<tr class="text-left text-light">
+    <td>@Model.BookId</td>
+    <td>@Model.Title</td>
+    <td>@Model.AuthorFirstName @Model.AuthorMiddleName @Model.AuthorLastName</td>
+    <td>@Model.Pages</td>
+    <td>@Model.Publisher</td>
+    <td>@Model.Isbn</td>
+    <td>@Model.Classification</td>
+    <td>@Model.Category</td>
+    <td>$@Model.Price</td>
+</tr>

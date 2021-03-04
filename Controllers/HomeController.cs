@@ -27,11 +27,13 @@ namespace Assignment7_DevynSmith_Section3.Controllers
         }
 
         //index page that uses the repository to get the book data from the database
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, string classification, int page = 1)
         {
             return View(new BookListViewModel
             {
                 Books = _repository.Books
+                    .Where(c => category == null || c.Category == category)
+                    .Where(cl => classification == null || cl.Classification == classification)
                     .OrderBy(p => p.BookId)
                     .Skip((page - 1) * PageSize)
                     .Take(PageSize)
@@ -40,8 +42,11 @@ namespace Assignment7_DevynSmith_Section3.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalNumItems = _repository.Books.Count()
-                }
+                    TotalNumItems = category == null ? _repository.Books.Count() :
+                        _repository.Books.Where (x => x.Category == category).Count()
+                },
+                CurrentCategory = category,
+                CurrentClassification = classification
             });
         }
 

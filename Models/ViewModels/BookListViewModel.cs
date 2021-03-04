@@ -10,5 +10,7 @@ namespace Assignment7_DevynSmith_Section3.Models.ViewModels
         //giving the data that is needed to display on Index.html
         public IEnumerable<Book> Books { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public string CurrentCategory { get; set; }
+        public string CurrentClassification { get; set; }
     }
 }

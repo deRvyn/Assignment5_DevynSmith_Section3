@@ -161,7 +161,7 @@ namespace Assignment7_DevynSmith_Section3.Models
                         Publisher = "Bantam",
                         Isbn = "978-0553393613",
                         Classification = "Fiction",
-                        Category = "Thrillers",
+                        Category = "Thriller",
                         Price = 15.03,
                         Pages = 642
                     },

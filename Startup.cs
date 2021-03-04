@@ -58,11 +58,28 @@ namespace Assignment7_DevynSmith_Section3
             //endpoint edited to make it look better in the URL
             app.UseEndpoints(endpoints =>
             {
+                //url for category
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //url for just putting a number
+                endpoints.MapControllerRoute("page",
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //url for just category
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1});
+
+                //url for pagination
                 endpoints.MapControllerRoute(
                     "pagination",
                     "Books/P{page}",
                     new { Controller = "Home", action = "Index" });
 
+                //default url (index)
                 endpoints.MapDefaultControllerRoute();
             });
 
