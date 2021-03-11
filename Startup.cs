@@ -1,6 +1,7 @@
-using Assignment7_DevynSmith_Section3.Models;
+using Assignment8_DevynSmith_Section3.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment7_DevynSmith_Section3
+namespace Assignment8_DevynSmith_Section3
 {
     public class Startup
     {
@@ -29,10 +30,21 @@ namespace Assignment7_DevynSmith_Section3
             //adds needed services to make the database work
             services.AddDbContext<BooksDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:BooksConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:BooksConnection"]);
             });
 
             services.AddScoped<IBooksRepository, EFBooksRepository>();
+
+            //adds razor pages functionality to our project
+            services.AddRazorPages();
+
+            //makes the razor page info stick
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            //adding in necessary services, making the same object be used for anything cart related
+            services.AddScoped<Cart>(c => SessionCart.GetCart(c));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +63,9 @@ namespace Assignment7_DevynSmith_Section3
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            //adds a session for us
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -60,12 +75,12 @@ namespace Assignment7_DevynSmith_Section3
             {
                 //url for category
                 endpoints.MapControllerRoute("catpage",
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //url for just putting a number
                 endpoints.MapControllerRoute("page",
-                    "{page:int}",
+                    "{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //url for just category
@@ -76,11 +91,14 @@ namespace Assignment7_DevynSmith_Section3
                 //url for pagination
                 endpoints.MapControllerRoute(
                     "pagination",
-                    "Books/P{page}",
+                    "Books/P{pageNum}",
                     new { Controller = "Home", action = "Index" });
 
                 //default url (index)
                 endpoints.MapDefaultControllerRoute();
+
+                //enables routing for razor pages
+                endpoints.MapRazorPages();
             });
 
             //makes sure the seed data populates on startup if needed

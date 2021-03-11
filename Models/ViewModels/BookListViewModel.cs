@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment7_DevynSmith_Section3.Models.ViewModels
+namespace Assignment8_DevynSmith_Section3.Models.ViewModels
 {
     public class BookListViewModel
     {

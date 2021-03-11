@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment7_DevynSmith_Section3.Models
+namespace Assignment8_DevynSmith_Section3.Models
 {
     //this class simply adds in data to the database, that's why it's so long
     public class SeedData

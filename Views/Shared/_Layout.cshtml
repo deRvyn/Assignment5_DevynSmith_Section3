@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/site.js"></script>
     <link rel="icon" type="image/x-icon" href="~/img/favicon.ico" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 
 @*using the default navbar and css, plus a few edits*@
@@ -26,6 +27,9 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                     </ul>
+                </div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
                 </div>
             </div>
         </nav>

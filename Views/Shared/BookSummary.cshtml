@@ -1,6 +1,6 @@
 ﻿@model Book 
 
-@*creating a partial view*@
+@*creating a partial view for the book summary table*@
 
 <tr class="text-left text-light">
     <td>@Model.BookId</td>
@@ -12,4 +12,16 @@
     <td>@Model.Classification</td>
     <td>@Model.Category</td>
     <td>$@Model.Price</td>
+
+    @*adding the add to cart button*@
+    <td><form id="@Model.BookId" asp-page="/Cart" method="post">
+    <input type="hidden" asp-for="BookId" />
+    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+    <span class="card-text p-1">
+        <button type="submit" class="btn-success btn-sm pull-right">
+            Add to Cart
+        </button>
+    </span>
+</form></td>
 </tr>
+

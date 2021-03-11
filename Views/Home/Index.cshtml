@@ -5,44 +5,54 @@
 @*imports the data*@
 @model BookListViewModel
 
+<div>
+    <h1 class="display-4 text-left">Book List</h1>
+</div>
+
 <div class="text-center row">
     
-    <div class="text-left col-3">
-        <h1 class="display-4 text-left">Book List</h1>
+    <div class="text-left col-2">
+        
 
         @*Filtering links*@
 
         <vc:navigation-menu></vc:navigation-menu>
     </div>
     
+        @*sets up the table and headings*@
+        <table class="text-left table table-striped table-dark table-hover col-10">
+            <tr class="text-left text-light">
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Page Count</th>
+                <th>Publisher</th>
+                <th>ISBN</th>
+                <th>Classification</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Purchase</th>
+            </tr>
+            @*renders each entry in the database into a new row of the table*@
+            @*NOTE author is combined here because in the context of viewing the data it makes more sense*@
+            @foreach (var x in Model.Books)
+            {
+                @*using a partial to display the book table*@
+                <partial name="BookSummary" model="x"></partial>
+            }
 
-    @*sets up the table and headings*@
-    <table class="text-left table table-striped table-dark table-hover col-9" style="top:75px">
-        <tr class="text-left text-light">
-            <th>#</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Page Count</th>
-            <th>Publisher</th>
-            <th>ISBN</th>
-            <th>Classification</th>
-            <th>Category</th>
-            <th>Price</th>
-        </tr>
-        @*renders each entry in the database into a new row of the table*@
-        @*NOTE author is combined here because in the context of viewing the data it makes more sense*@
-        @foreach (var x in Model.Books)
-        {
-            @*using a partial to display the book table*@
-            <partial name="BookSummary" model="x"></partial>
-        }
         </table>
 
-        @*adding the pagination buttons*@
-        <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
-             page-class-normal="btn-outline-dark bg-light"
-             page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
-             class="btn-group pull-right m-1 align-self-end"></div>
-
-
 </div>
+
+<div class="text-center col-10" style="float:right">
+    @*adding the pagination buttons*@
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark bg-light"
+         page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+         class="btn-group pull-right m-1 align-self-end"></div>
+</div>
+
+<br />
+<br />
+<br />

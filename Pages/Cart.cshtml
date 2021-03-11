@@ -1,0 +1,52 @@
+﻿@page
+@model Assignment8_DevynSmith_Section3.Pages.CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped table-dark">
+    @*cart items*@
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>        
+    </thead>
+
+    @*cart items*@
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td>@line.Book.Title</td>
+                <td>@line.Quantity</td>
+                <td>@line.Book.Price.ToString("c")</td>
+                <td>@((line.Quantity * line.Book.Price).ToString("c"))</td>
+
+                @*adding the remove button*@
+                <td class="text-center">
+                    <form asp-page-handler="Remove" method="post">
+                        <input type="hidden" name="BookId" value="@line.Book.BookId" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    @*cart total field*@
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td>@Model.Cart.ComputeTotalPrice().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>

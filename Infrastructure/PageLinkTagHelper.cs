@@ -1,4 +1,4 @@
-﻿using Assignment7_DevynSmith_Section3.Models.ViewModels;
+﻿using Assignment8_DevynSmith_Section3.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Assignment7_DevynSmith_Section3.Infrastructure
+namespace Assignment8_DevynSmith_Section3.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
@@ -48,7 +48,7 @@ namespace Assignment7_DevynSmith_Section3.Infrastructure
             {
                 TagBuilder tag = new TagBuilder("a");
 
-                PageUrlValues["page"] = i;
+                PageUrlValues["pageNum"] = i;
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                 //adding CSS based on action for the pagination buttons

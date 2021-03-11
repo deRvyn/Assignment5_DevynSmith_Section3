@@ -1,4 +1,4 @@
-﻿using Assignment7_DevynSmith_Section3.Models;
+﻿using Assignment8_DevynSmith_Section3.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Assignment7_DevynSmith_Section3.Models.ViewModels;
+using Assignment8_DevynSmith_Section3.Models.ViewModels;
 
-namespace Assignment7_DevynSmith_Section3.Controllers
+namespace Assignment8_DevynSmith_Section3.Controllers
 {
     public class HomeController : Controller
     {
@@ -27,7 +27,7 @@ namespace Assignment7_DevynSmith_Section3.Controllers
         }
 
         //index page that uses the repository to get the book data from the database
-        public IActionResult Index(string category, string classification, int page = 1)
+        public IActionResult Index(string category, string classification, int pageNum = 1)
         {
             return View(new BookListViewModel
             {
@@ -35,12 +35,12 @@ namespace Assignment7_DevynSmith_Section3.Controllers
                     .Where(c => category == null || c.Category == category)
                     .Where(cl => classification == null || cl.Classification == classification)
                     .OrderBy(p => p.BookId)
-                    .Skip((page - 1) * PageSize)
+                    .Skip((pageNum - 1) * PageSize)
                     .Take(PageSize)
                 ,
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = pageNum,
                     ItemsPerPage = PageSize,
                     TotalNumItems = category == null ? _repository.Books.Count() :
                         _repository.Books.Where (x => x.Category == category).Count()
